@@ -1,14 +1,14 @@
 var express = require('express')
 var router = express.Router()
 const Sequelize = require('sequelize')
+const db_config = require('./db_config')
 
 const db = {}
 
-// Modify this to match the configuration of your MySQL DB
 // new Sequelize(db name, user, password)
-const sequelize = new Sequelize('tasks_db', 'root', '', {
-    host: 'localhost',
-    dialect: 'mysql',
+const sequelize = new Sequelize(db_config.db_name, db_config.user, db_config.password, {
+    host: db_config.host,
+    dialect: db_config.dialect,
     operatorsAliases: false,
 })
 
@@ -16,7 +16,7 @@ db.sequelize = sequelize
 
 task = db.sequelize.define(
     // Table name
-    'tasks',
+    db_config.table_name,
     // Table structure
     {
         id: {

@@ -1,5 +1,6 @@
 # Task Manager
 A simple task managing application built with Node.js, Vue.js, and MySQL
+
 <img src="https://github.com/EricSciullo/Task-Manager/blob/master/readme_images/example.gif?raw=true" width="60%">
 
 ### Requirements
@@ -16,23 +17,21 @@ Table structure:
 
 ### Getting started
 ----
-You may need to update `/task_manager_backend/router.js` to match the configuration of your DB.
+You may need to modify `/task_manager_backend/db_config.js` to match the configuration of your DB.
+
 ```JavaScript
-// Modify this to match the configuration of your MySQL DB
-// new Sequelize(db name, user, password)
-const sequelize = new Sequelize('tasks_db', 'root', '', {
+module.exports = {
+    db_name: 'tasks_db',
+    user: 'root',
+    password: '',
     host: 'localhost',
     dialect: 'mysql',
-    operatorsAliases: false,
-})
+    table_name: 'tasks',
+    
+    express_port: '3000'
+}
 ```
-If you configured your DB the same way I did, then you will likely just need to update `user` and `password`
-You may also need to update the following part of `router.js` if you have a different table name
-```JavaScript
-task = db.sequelize.define(
-    // Table name
-    'tasks'
-```
+
 #### Back-end
 ```
 cd task_manager_backend
